@@ -32,4 +32,8 @@ public class ArticleService {
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
+
+    public void delete(Integer articleId) {
+        repository.deleteById(articleId);
+    }
 }
