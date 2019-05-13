@@ -18,7 +18,7 @@ public class MainController {
 
     @RequestMapping
     public String mainPage(Model model) {
-        model.addAttribute("message", "Hello World!");
+        model.addAttribute("articles", service.getAll());
         return "main";
     }
 

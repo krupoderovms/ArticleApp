@@ -56,19 +56,24 @@
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-8 text-left">
-            <h1>Добро пожаловать</h1>
-            <p>
-                Этот сайт показывает возможности <b>framework'а Spring</b><br/>
-                C исходным кодом можете ознакомиться <a href="https://github.com/KrupoderovMikhail/articles">здесь</a>
-            </p>
-            <hr/>
             <div>
-                <h3>Тестовый пример</h3>
-                <p th:text="${message}"/>
+                <h1>Добро пожаловать</h1>
+                <p>
+                    Этот сайт показывает возможности <b>framework'а Spring</b><br/>
+                    C исходным кодом можете ознакомиться <a
+                        href="https://github.com/KrupoderovMikhail/articles">здесь</a>
+                </p>
+                <hr/>
+            </div>
+
+            <!-- Итерируемся по коллекции articles, которую мы создаем в маппинге mainPage, достаем и отображем article -->
+            <div th:each="article : ${articles}">
+                <h3 th:text="${article.title}"/>
+                <p th:text="${article.content}"/>
+                <hr/>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>
