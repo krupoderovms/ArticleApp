@@ -21,11 +21,11 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/blog">Статьи</a></li>
-                <li><a href="/blog/editor">Добавить свою статью</a></li>
+                <li class="active"><a href="/">Статьи</a></li>
+                <li><a href="/editor">Добавить свою статью</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/blog/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
             </ul>
         </div>
     </div>
@@ -49,7 +49,7 @@
             <div th:each="article : ${articles}">
                 <h3 th:text="${article.title}"/>
                 <p th:text="${article.content}"/>
-                <a th:href="@{/blog/editor/delete/} + ${article.id}">
+                <a th:href="@{/editor/delete/} + ${article.id}">
                     <img border="0" src="https://img.icons8.com/color/48/000000/trash.png" width="30" height="30"/>
                 </a>
                 <hr/>
