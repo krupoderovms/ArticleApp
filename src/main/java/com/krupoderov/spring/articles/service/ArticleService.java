@@ -14,6 +14,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class ArticleService {
+
     @Autowired
     private ArticleRepository repository;
 

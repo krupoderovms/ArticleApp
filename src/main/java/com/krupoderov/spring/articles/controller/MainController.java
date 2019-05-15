@@ -38,7 +38,7 @@ public class MainController {
     @RequestMapping(value = "/editor/delete/{article_id}")
     public String deleteArticle(@PathVariable("article_id") Integer articleId) {
         service.delete(articleId);
-        return "main";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login")

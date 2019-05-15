@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -10,6 +9,7 @@
     <title>Заглавная страница блога</title>
 </head>
 <body>
+<!-- Navigation bar -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -31,6 +31,7 @@
     </div>
 </nav>
 <br/>
+<!-- Main page. Display of articles -->
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-8 text-left">
@@ -39,13 +40,16 @@
                     <div class="panel-body">
                         <h1>Добро пожаловать</h1>
                         <p>
-                            C исходным кодом проекта можете ознакомиться <a
-                                href="https://github.com/KrupoderovMikhail/articles">здесь</a>
+                            C исходным кодом проекта можете ознакомиться
+                            <a href="https://github.com/KrupoderovMikhail/articles">
+                                <img border="0" src="https://img.icons8.com/windows/96/000000/github.png" width="30"
+                                     height="30"/>
+                                здесь
+                            </a>
                         </p>
                     </div>
                 </div>
             </div>
-
             <div th:each="article : ${articles}">
                 <h3 th:text="${article.title}"/>
                 <p th:text="${article.content}"/>
