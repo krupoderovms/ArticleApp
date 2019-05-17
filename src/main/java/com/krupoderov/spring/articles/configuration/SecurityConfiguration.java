@@ -4,28 +4,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity config) throws Exception {
         config
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/img").permitAll()
-                .antMatchers("/editor").hasRole("EDITOR")
-                .antMatchers("/editor/delete").hasRole("EDITOR")
+                    .antMatchers("/", "/registration").permitAll()
+                    .antMatchers("/img").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/editor").permitAll()
+                    .formLogin()
+                    .loginPage("/login").defaultSuccessUrl("/editor")
+                    .permitAll()
                 .and()
-                .logout().logoutUrl("/logout").permitAll();
+                    .logout().logoutUrl("/logout")
+                    .permitAll();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication() // пользователь хранится в оперативной памяти
-                .withUser("user").password("{noop}1").roles("EDITOR");
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .usersByUsernameQuery("select username, password, active from usr where username=?")
+                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
     }
 }
