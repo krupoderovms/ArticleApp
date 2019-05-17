@@ -6,10 +6,14 @@ A simple spring boot application that allows you to create and post for public v
   
 # Test user
    username: user
+   
    password: 1
    
+   
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/1.png)
+
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/2.png)
+
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/3.png)
    
    
