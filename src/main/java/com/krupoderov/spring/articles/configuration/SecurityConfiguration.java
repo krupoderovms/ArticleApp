@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         config
                 .authorizeRequests()
                     .antMatchers("/", "/registration").permitAll()
-                    .antMatchers("/img").permitAll()
+                    .antMatchers("/static/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
