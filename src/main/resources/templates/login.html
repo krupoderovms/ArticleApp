@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Страница авторизации</title>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
-<body>
+<body class="text-center">
 <!-- Navigation bar -->
-<div th:insert="parts/navbar :: part"></div>
+<div th:replace="fragments/header :: navbar"/>
 <!-- Login -->
 <div class="container-fluid text-center">
     <div class="row content">
@@ -21,6 +17,11 @@
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">
                             Вы ввели неправильные данные
+                        </div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">
+                            Вы успешно вышли из системы
                         </div>
                     </div>
                     <div class="input-group">

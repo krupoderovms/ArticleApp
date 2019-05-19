@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Заглавная страница блога</title>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 <!-- Navigation bar -->
-<div th:insert="parts/navbar :: part"></div>
+<div th:replace="fragments/header :: navbar"/>
 <br/>
 <!-- Main page. Display of articles -->
 <div class="container-fluid text-center">
@@ -19,7 +15,7 @@
             <div>
                 <div class="well">
                     <div class="panel-body">
-                        <h1>Добро пожаловать</h1>
+                        <h1 th:inline="text">Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1>
                         <p>
                             C исходным кодом проекта можете ознакомиться
                             <a href="https://github.com/KrupoderovMikhail/articles">
@@ -30,14 +26,14 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div th:each="article : ${articles}">
-                <h3 th:text="${article.title}"/>
-                <p th:text="${article.content}"/>
-                <a th:href="@{/editor/delete/} + ${article.id}">
-                    <img border="0" src="https://img.icons8.com/color/48/000000/trash.png" width="30" height="30"/>
-                </a>
-                <hr/>
+                <div th:each="article : ${articles}">
+                    <h3 th:text="${article.title}"/>
+                    <p th:text="${article.content}"/>
+                    <a th:href="@{/editor/delete/} + ${article.id}">
+                        <img border="0" src="https://img.icons8.com/color/48/000000/trash.png" width="30" height="30"/>
+                    </a>
+                    <hr/>
+                </div>
             </div>
         </div>
     </div>
