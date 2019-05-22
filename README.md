@@ -9,11 +9,30 @@ A simple spring boot application that allows you to create and post for public v
    
    password: 1
    
-   
+Main page
+------------------------
+
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/1.png)
+
+Article page
+------------------------
 
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/2.png)
 
+Creating an article
+------------------------
+
 ![](https://github.com/KrupoderovMikhail/articles/blob/master/3.png)
+
+Login page
+------------------------
+
+![](https://github.com/KrupoderovMikhail/articles/blob/master/4.png)
+
+Registration page
+------------------------
+
+![](https://github.com/KrupoderovMikhail/articles/blob/master/5.png)
+   
    
    
