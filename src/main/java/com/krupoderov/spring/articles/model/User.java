@@ -5,7 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Set;
 
-
+/* В данном классе описывается объект(пользователь),
+    который будет помощен в базу данных
+ */
 @Entity
 @Data
 @Table(name = "usr")

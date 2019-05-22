@@ -16,6 +16,7 @@
                 <div class="well">
                     <div class="panel-body">
                         <h1 th:inline="text">Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1>
+                        <h4 th:inline="text">Данный сайт создан представляет собой учебный проект и показывает возможности Spring Boot</h4>
                         <p>
                             C исходным кодом проекта можете ознакомиться
                             <a href="https://github.com/KrupoderovMikhail/articles">
@@ -25,14 +26,6 @@
                             </a>
                         </p>
                     </div>
-                </div>
-                <div th:each="article : ${articles}">
-                    <h3 th:text="${article.title}"/>
-                    <p th:text="${article.content}"/>
-                    <a th:href="@{/editor/delete/} + ${article.id}">
-                        <img border="0" src="https://img.icons8.com/color/48/000000/trash.png" width="30" height="30"/>
-                    </a>
-                    <hr/>
                 </div>
             </div>
         </div>
