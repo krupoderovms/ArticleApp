@@ -11,7 +11,9 @@ A simple spring boot application that allows you to create and post for public v
    
 # Used technologies
   Back end: Spring Boot, Sptring MVC, Spring Security, Spring Data JPA, PostgreSQL
+  
   Front end: HTML, CSS, Bootstrap, Thymeleaf
+  
   Other: Lombok
    
 Main page
