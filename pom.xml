@@ -58,6 +58,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
         <!--Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

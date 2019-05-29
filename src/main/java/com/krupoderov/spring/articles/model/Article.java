@@ -8,8 +8,8 @@ import java.io.Serializable;
 /* В данном классе описывается объект(статья),
     который будет помещен в базу данных */
 
-@Entity // класс сохраняется в базу данных
-@Data // создает геттеры, сеттеры, конструкторы
+@Entity
+@Data
 public class Article implements Serializable, Comparable<Article> {
 
     /* Описываем параметры */
@@ -19,10 +19,7 @@ public class Article implements Serializable, Comparable<Article> {
     @Column
     private String title;
     @Column(length = 1000000)
-    @Lob // Указывает, что постоянное свойство
-    // или поле должны сохраняться как большой
-    // объект для поддерживаемого базой данных
-    // типа большого объекта.
+    @Lob
     private String content;
     @Column
     private long creationTimestamp;
