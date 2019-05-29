@@ -1,6 +1,13 @@
 package com.krupoderov.spring.articles.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 /* Роли пользователей */
-public enum Role {
-    USER
+public enum Role implements GrantedAuthority {
+    USER;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
