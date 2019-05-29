@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Список пользователей</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<!-- Navigation bar -->
+<div th:replace="fragments/header :: navbar"/>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:each="user : ${users}">
+        <tr>
+            <td><p th:text="${user.username}"/></td>
+<!--            <td><p th:each="user.role : ${roles}"/></td>  Данный участок временно не работает-->
+<!--            <td><a href="/user/${user.id}">Изменить</a></td>-->
+        </tr>
+    </div>
+    </tbody>
+</table>
+
+</div>
+
+</body>
+</html>
