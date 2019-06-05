@@ -50,7 +50,6 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
