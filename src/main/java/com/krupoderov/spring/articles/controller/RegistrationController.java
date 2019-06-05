@@ -21,11 +21,21 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Страница регистрации
+     * @return registration.html
+     */
     @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
 
+    /**
+     * Форма регистрации нового пользователя
+     * @param user Принимает пользователя из базы данных
+     * @param model Модель, для хранения сообщения о том, что пользователь уже существует в базе
+     * @return Переадресация на страницу логина
+     */
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());

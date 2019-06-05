@@ -12,18 +12,25 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+
 @Service
 public class ArticleService {
 
     @Autowired
     private ArticleRepository repository;
 
+    /**
+     * Сохранение статьи
+     * @param article получает статью, которую необходимо сохранить
+     */
     public void save(Article article) {
         repository.save(article);
     }
 
-    /* Метод, позволяющий "достать" все объекты Article из базы данных
-        и отобразить их в убывающем порядке по дате создания
+    /**
+     * Метод, позволяющий "достать" все объекты Article из базы данных
+     *         и отобразить их в убывающем порядке по дате создания
+     * @return отсортированные статьи
      */
     public List<Article> getAll() {
         return StreamSupport
@@ -34,6 +41,10 @@ public class ArticleService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Удаление статьи
+     * @param articleId id статьи, которую необходимо удалить
+     */
     public void delete(Integer articleId) {
         repository.deleteById(articleId);
     }

@@ -18,28 +18,44 @@ public class ArticlesController {
     @Autowired
     ArticleService service;
 
-    /* Отображение всех статей */
+    /**
+     * Отображение всех статей
+     * @param model хранение статей из базы
+     * @return articles.html
+     */
     @RequestMapping
     public String articlesPage(Model model) {
         model.addAttribute("articles", service.getAll());
         return "articles";
     }
 
-    /* Создание новой статьи */
+    /**
+     * Создание новой статьи
+     * @param model хранение созданной статьи
+     * @return editor.html
+     */
     @RequestMapping(value = "/editor")
     public String editorPage(Model model) {
         model.addAttribute("article", new Article());
         return "editor";
     }
 
-    /* Сохранение созданной статьи */
+    /**
+     * Сохранение созданной статьи
+     * @param article
+     * @return переадресация
+     */
     @RequestMapping(value = "/editor/submit", method = RequestMethod.POST)
     public String submitArticle(@ModelAttribute Article article) {
         service.save(article);
         return "redirect:../";
     }
 
-    /* Удаление статьи */
+    /**
+     * Удаление статьи
+     * @param articleId id статьи
+     * @return переадрессация
+     */
     @RequestMapping(value = "/editor/delete/{article_id}")
     public String deleteArticle(@PathVariable("article_id") Integer articleId) {
         service.delete(articleId);

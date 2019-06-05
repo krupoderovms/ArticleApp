@@ -11,22 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/") // адрес, по которому будет вызван контроллер
+@RequestMapping("/")
 public class MainController {
 
-    /* Главная страница */
+    /**
+     * Главная страница
+     * @return main.html
+     */
     @RequestMapping
     public String mainPage() {
         return "main";
     }
 
-    /* Страница авторизации */
+    /**
+     * Страница авторизации
+     * @return login.html
+     */
     @RequestMapping(value = "/login")
     public String loginPage() {
         return "login";
     }
 
-    /* Страница выхода из аккаунта */
+    /**
+     * Страница выхода из аккаунта
+     * @param request формирует клиенту ответ c информацией о запросе, отправленным методом GET, и генерирует ответ клиенту
+     * @param response определяет ответ клиенту
+     * @return возвращает на страницу логина(логаута)
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

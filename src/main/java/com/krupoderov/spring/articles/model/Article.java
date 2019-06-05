@@ -5,9 +5,10 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/* В данном классе описывается объект(статья),
-    который будет помещен в базу данных */
-
+/**
+ * В данном классе описывается объект(статья),
+ *     который будет помещен в базу данных
+ */
 @Entity
 @Data
 public class Article implements Serializable, Comparable<Article> {

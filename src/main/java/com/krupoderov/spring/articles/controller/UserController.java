@@ -14,9 +14,13 @@ public class UserController {
     @Autowired
     UserRepo userRepo;
 
+    /**
+     * Список пользователей
+     * @param model модель для хранения пользователей из базы данных
+     * @return userList.html
+     */
     @GetMapping
     public String userList(Model model) {
-
         model.addAttribute("users", userRepo.findAll());
         return "userList";
     }
