@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Класс, представляющий собой контроллер, в котором происходит отображение главной страницы
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Controller
 @RequestMapping("/")
 public class MainController {

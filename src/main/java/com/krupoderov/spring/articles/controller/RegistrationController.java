@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
 
+/**
+ * Класс, представляющий собой контроллер, в котором происходит отображение формы регистрации пользователей
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Controller
 public class RegistrationController {
 

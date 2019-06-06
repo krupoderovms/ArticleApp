@@ -12,7 +12,13 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-
+/**
+ * Класс, представляющий собой сервис(компонент),
+ * в котором мы описываем необходимые нам методы для работы со моделью Article
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Service
 public class ArticleService {
 

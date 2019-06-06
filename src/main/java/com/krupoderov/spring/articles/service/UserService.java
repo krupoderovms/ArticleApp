@@ -7,6 +7,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Класс, представляющий собой сервис(компонент),
+ * в котором мы описываем необходимые нам методы для работы со моделью User
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Service
 public class UserService implements UserDetailsService {
 
