@@ -1,11 +1,13 @@
 package com.krupoderov.spring.articles.service;
 
+import com.krupoderov.spring.articles.model.User;
 import com.krupoderov.spring.articles.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * Класс, представляющий собой сервис(компонент),
@@ -29,5 +31,13 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
+    }
+
+    public void updateProfile(User user, String password) {
+        if (!StringUtils.isEmpty(password)) {
+            user.setPassword(password);
+        }
+
+        userRepo.save(user);
     }
 }
