@@ -57,7 +57,7 @@ public class ArticlesController {
      * @return переадрессация
      */
     @RequestMapping(value = "/editor/delete/{article_id}")
-    public String deleteArticle(@PathVariable("article_id") Integer articleId) {
+    public String deleteArticle(@PathVariable("article_id") Long articleId) {
         service.delete(articleId);
         return "redirect:/";
     }

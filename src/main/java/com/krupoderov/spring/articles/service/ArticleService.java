@@ -45,7 +45,7 @@ public class ArticleService {
      * Удаление статьи
      * @param articleId id статьи, которую необходимо удалить
      */
-    public void delete(Integer articleId) {
+    public void delete(Long articleId) {
         repository.deleteById(articleId);
     }
 }

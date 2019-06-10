@@ -16,7 +16,7 @@ public class Article implements Serializable, Comparable<Article> {
     /* Описываем параметры */
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     @Column
     private String title;
     @Column(length = 1000000)

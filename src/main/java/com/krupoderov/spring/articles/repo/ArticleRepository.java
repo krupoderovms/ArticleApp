@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * базы(напр. findAllById, delete, save и тд)
  */
 @Repository
-public interface ArticleRepository extends CrudRepository<Article, Integer> {
+public interface ArticleRepository extends CrudRepository<Article, Long> {
 }
