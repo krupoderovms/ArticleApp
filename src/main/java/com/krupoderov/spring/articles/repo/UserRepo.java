@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * использования методов
  * получения и управлением данных из
  * базы(напр. findAllById, delete, save и тд)
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
  */
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);

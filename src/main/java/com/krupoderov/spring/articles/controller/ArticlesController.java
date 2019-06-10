@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+/**
+ * Класс, представляющий собой контроллер, в котором происходит отображение статей
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Controller
 @RequestMapping("/articles")
 public class ArticlesController {

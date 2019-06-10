@@ -6,8 +6,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * В данном классе описывается объект(статья),
- *     который будет помещен в базу данных
+ * В данном классе описывается модель(статья),
+ * которая будет помещена в базу данных
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
  */
 @Entity
 @Data

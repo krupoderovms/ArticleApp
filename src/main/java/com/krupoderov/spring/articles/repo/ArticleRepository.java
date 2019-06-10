@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
  * использования методов
  * получения и управлением данных из
  * базы(напр. findAllById, delete, save и тд)
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
  */
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Long> {

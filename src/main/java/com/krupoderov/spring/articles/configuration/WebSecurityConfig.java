@@ -11,6 +11,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Класс, представляющий собой конфигурацию безопасности
+ * Здесь мы описываем разрешения для неавторизованных пользователей и добавляем форму логина и логаута
+ *
+ * @version 1.0
+ * @author Krupoderov Mikhail
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
