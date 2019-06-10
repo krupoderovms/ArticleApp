@@ -3,6 +3,7 @@ package com.krupoderov.spring.articles.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -20,8 +21,12 @@ public class Article implements Serializable, Comparable<Article> {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotBlank(message = "Пожалуйста заполни поле")
     @Column
     private String title;
+
+    @NotBlank(message = "Пожалуйста заполни поле")
     @Column(length = 1000000)
     @Lob
     private String content;
