@@ -2,7 +2,7 @@
 A simple spring boot application that allows you to create and post for public viewing of the article.
 
 # Heroku link
-(временно не работает)
+(temporarily not working)
   https://articles-spring-boot.herokuapp.com/
   
 # Test user
