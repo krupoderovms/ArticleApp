@@ -2,6 +2,7 @@
 A simple spring boot application that allows you to create and post for public viewing of the article.
 
 # Heroku link
+(temporarily not working)
   https://articles-spring-boot.herokuapp.com/
   
 # Test user
@@ -10,7 +11,7 @@ A simple spring boot application that allows you to create and post for public v
    password: 1
    
 # Used technologies
-  Back end: Java 8, Spring Boot, Sptring MVC, Spring Security, Spring Data JPA, PostgreSQL
+  Back end: Java 8, Spring Boot, Spring MVC, Spring Security, Spring Data JPA, PostgreSQL
   
   Front end: HTML, CSS, Bootstrap, Thymeleaf
   
