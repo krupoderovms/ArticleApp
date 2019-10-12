@@ -1,11 +1,13 @@
 package com.krupoderov.spring.articles.model;
 
+import com.krupoderov.spring.articles.utils.Constants;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -23,9 +25,13 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotBlank(message = "Поле не может быть пустым")
+    @Size(min = Constants.USERNAME_LENGTH_MIN, max = Constants.USERNAME_LENGTH_MAX)
     private String username;
+
     @NotBlank(message = "Поле не может быть пустым")
+    @Size(min = Constants.PASSWORD_LENGTH_MIN, max = Constants.PASSWORD_LENGTH_MAX)
     private String password;
     private boolean active;
 
