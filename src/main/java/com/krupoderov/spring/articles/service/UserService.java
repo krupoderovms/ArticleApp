@@ -1,14 +1,17 @@
 package com.krupoderov.spring.articles.service;
 
 import com.krupoderov.spring.articles.model.User;
-import com.krupoderov.spring.articles.repo.UserRepo;
+import com.krupoderov.spring.articles.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.Objects;
 
 /**
  * Класс, представляющий собой сервис(компонент),
@@ -24,7 +27,7 @@ public class UserService implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepository;
 
     /**
      * Метод для поиска пользователя по имени
@@ -34,14 +37,26 @@ public class UserService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+        if (Objects.isNull(user)) {
+            throw new UsernameNotFoundException("Can't find user with username " + username);
+        }
+        return user;
     }
 
     public void updateProfile(User user, String password) {
         if (!StringUtils.isEmpty(password)) {
             user.setPassword(passwordEncoder.encode(password));
         }
+        userRepository.save(user);
+    }
 
-        userRepo.save(user);
+    public User getCurrentUser() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = null;
+        if (userDetails instanceof User) {
+            user = (User) userDetails;
+        }
+        return user;
     }
 }

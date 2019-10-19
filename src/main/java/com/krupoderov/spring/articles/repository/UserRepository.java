@@ -1,8 +1,7 @@
-package com.krupoderov.spring.articles.repo;
+package com.krupoderov.spring.articles.repository;
 
-import com.krupoderov.spring.articles.model.Article;
+import com.krupoderov.spring.articles.model.User;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 /** Данный интерфейс неообходим для возможности
  * использования методов
@@ -12,6 +11,6 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @author Krupoderov Mikhail
  */
-@Repository
-public interface ArticleRepository extends CrudRepository<Article, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
 }

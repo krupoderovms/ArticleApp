@@ -1,7 +1,7 @@
 package com.krupoderov.spring.articles.service;
 
 import com.krupoderov.spring.articles.model.Article;
-import com.krupoderov.spring.articles.repo.ArticleRepository;
+import com.krupoderov.spring.articles.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
