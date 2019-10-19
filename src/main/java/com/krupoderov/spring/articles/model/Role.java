@@ -1,13 +1,9 @@
 package com.krupoderov.spring.articles.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -16,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
  * @version 1.1
  * @author Krupoderov Mikhail
  */
-@Getter
-@Setter
+@Entity
+@Data
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

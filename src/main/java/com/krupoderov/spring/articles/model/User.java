@@ -2,20 +2,24 @@ package com.krupoderov.spring.articles.model;
 
 import com.krupoderov.spring.articles.utils.Constants;
 import lombok.Data;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  *  В данном классе описывается модель(пользователь),
  *  которая будет помещена в базу данных
  *
- * @version 1.0
+ * @version 1.1
  * @author Krupoderov Mikhail
  */
 @Entity
@@ -26,23 +30,59 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Поле не может быть пустым")
+    @NotEmpty
     @Size(min = Constants.USERNAME_LENGTH_MIN, max = Constants.USERNAME_LENGTH_MAX)
+    @Column(unique = true)
     private String username;
 
-    @NotBlank(message = "Поле не может быть пустым")
-    @Size(min = Constants.PASSWORD_LENGTH_MIN, max = Constants.PASSWORD_LENGTH_MAX)
-    private String password;
-    private boolean active;
+    @NotEmpty
+    @Column(unique = true)
+    @Email
+    private String email;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
+    @NotEmpty
+    private String password;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateOfRegistration;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Reply> replies;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Topic> topics;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Photo photo;
+
+    public boolean getPhotoExist() {
+        return Objects.nonNull(photo);
+    }
+
+    public int getCountPosts() {
+        return (topics.size() + replies.size());
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "ROLE_ASSIGNMENTS",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+    @Setter
     private Set<Role> roles;
+
+    public boolean getHasRoleById(Long roleId) {
+        for (Role role : roles) {
+            if (role.getId().equals(roleId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
     }
 
     @Override
@@ -62,6 +102,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
+        return true;
     }
 }
