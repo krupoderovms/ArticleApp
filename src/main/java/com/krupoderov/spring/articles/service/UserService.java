@@ -1,6 +1,8 @@
 package com.krupoderov.spring.articles.service;
 
+import com.krupoderov.spring.articles.model.Role;
 import com.krupoderov.spring.articles.model.User;
+import com.krupoderov.spring.articles.repository.RoleRepository;
 import com.krupoderov.spring.articles.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.Objects;
 
 /**
@@ -23,11 +26,16 @@ import java.util.Objects;
 @Service
 public class UserService implements UserDetailsService {
 
+    private static final long ID_ROLE_FOR_NEW_USER = 1L;
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     /**
      * Метод для поиска пользователя по имени
@@ -58,5 +66,12 @@ public class UserService implements UserDetailsService {
             user = (User) userDetails;
         }
         return user;
+    }
+
+    public void sighupUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role userRole = roleRepository.findById(ID_ROLE_FOR_NEW_USER).orElse(null);
+        user.setRoles(Collections.singleton(userRole));
+        userRepository.save(user);
     }
 }

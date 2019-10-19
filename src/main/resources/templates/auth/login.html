@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:include="layouts/default :: page">
+<body>
+<div th:fragment="content">
+    <div class="page-header">
+        <h1 th:text="#{login.heading}">Sign In</h1>
+    </div>
+    <div th:if="${param.error}" class="alert alert-danger">
+        Invalid username or password.
+    </div>
+    <div sec:authorize="isAuthenticated()" class="alert alert-warning">
+        You are already authenticated.
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" th:text="#{header.logout}" class="btn btn-link">Logout</button>
+        </form>
+    </div>
+    <form th:action="@{/login}" method="post" class="form-sign needs-validation">
+        <div class="form-group needs-validation">
+            <label th:text="#{login.label.login}" class="control-label" for="username">User Name</label>
+            <input type="text" th:attr="placeholder=#{login.placeholder.login}" th:required="required"
+                   class="form-control"
+                   id="username" name="username"/>
+        </div>
+        <div class="form-group">
+            <label th:text="#{login.label.password}" class="control-label" for="password">Password</label>
+            <input type="password" th:attr="placeholder=#{login.placeholder.password}" th:required="required"
+                   class="form-control" name="password" id="password"/>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" name="remember-me" id="rememberMe"/>
+            <label th:text="#{login.label.remember}" class="form-check-label" for="rememberMe">remember-me</label>
+        </div>
+
+        <input type="submit" th:value="#{login.btn.submit}" class="btn btn-success btn-block" value="Sign In!"/>
+    </form>
+</div>
+
+<div th:fragment="scripts" th:remove="tag">
+    <script type="text/javascript" src="/webjars/jquery-validation/1.17.0/dist/jquery.validate.min.js"></script>
+    <script th:inline="javascript">
+        $(function () {
+            $('.needs-validation').validate();
+        });
+
+    </script>
+</div>
+
+</body>
+</html>
