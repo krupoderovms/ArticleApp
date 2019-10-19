@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
-<head>
-    <title>Список пользователей</title>
-    <div th:replace="fragments/header :: header-css"/>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+      th:include="layouts/default :: page">
 <body>
-<!-- Navigation bar -->
-<div th:replace="fragments/header :: navbar"/>
-
+<div th:fragment="content">
 
 <table>
     <thead>
