@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+<html xmlns:th="http://www.thymeleaf.org"
       th:include="layouts/default :: page">
 <body>
 <div th:fragment="content">
-<!-- Main page. Display of articles -->
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-8 text-left">
-            <div>
-                <div class="well">
-                    <div class="panel-body">
-                        <h1 th:inline="text">Добро пожаловать [[${#httpServletRequest.remoteUser}]]!</h1>
-                        <h4 th:inline="text">Данный сайт создан представляет собой учебный проект и показывает возможности Spring Boot</h4>
-                        <p>
-                            C исходным кодом проекта можете ознакомиться
-                            <a href="https://github.com/KrupoderovMikhail/articles">
-                                <img border="0" src="https://img.icons8.com/windows/96/000000/github.png" width="30"
-                                     height="30"/>
-                                здесь
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="page-header">
+        <h1 th:text="#{home.welcome}"></h1>
     </div>
-</div>
+    <h2 th:text="#{section.home}"></h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="w-75"><span th:text="#{section.title}">th</span></th>
+            <th><span th:text="#{section.topics}">th</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="section : ${sections}">
+            <td><a th:href="@{/section/{id}/(id=${section.id})}" th:text="${section.title}">-</a>
+                <div th:text="${section.text}" class="forum-desc">Forum Desc</div>
+                <div th:if="${section.isParent}" class="forum-subforums">
+                    <span th:text="#{section.subsection}"></span>
+                    <ul class="m-0">
+                        <li th:each="subsection : ${section.subsections}">
+                            <a th:href="@{/section/{id}/(id=${subsection.id})}" th:text="${subsection.title}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td th:text="${section.topics.size()}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
