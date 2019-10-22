@@ -6,7 +6,6 @@ import com.krupoderov.spring.articles.repository.ReplyRepository;
 import com.krupoderov.spring.articles.repository.TopicRepository;
 import com.krupoderov.spring.articles.response.ResourceNotFoundException;
 import com.krupoderov.spring.articles.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,14 +22,15 @@ import java.util.Objects;
 @RequestMapping("/reply")
 public class ReplyController {
 
-    @Autowired
-    TopicRepository topicRepository;
+    private final TopicRepository topicRepository;
+    private final ReplyRepository replyRepository;
+    private final UserService userService;
 
-    @Autowired
-    ReplyRepository replyRepository;
-
-    @Autowired
-    UserService userService;
+    public ReplyController(TopicRepository topicRepository, ReplyRepository replyRepository, UserService userService) {
+        this.topicRepository = topicRepository;
+        this.replyRepository = replyRepository;
+        this.userService = userService;
+    }
 
     @GetMapping("/add")
     public String add(@RequestParam("topic_id") Long topicId,

@@ -4,7 +4,6 @@ import com.krupoderov.spring.articles.controller.forms.RegistrationForm;
 import com.krupoderov.spring.articles.controller.forms.UserValidatorForm;
 import com.krupoderov.spring.articles.model.User;
 import com.krupoderov.spring.articles.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,11 +18,13 @@ import java.util.Date;
 @Controller
 public class AuthController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+    private final UserValidatorForm userValidatorForm;
 
-    @Autowired
-    UserValidatorForm userValidatorForm;
+    public AuthController(UserService userService, UserValidatorForm userValidatorForm) {
+        this.userService = userService;
+        this.userValidatorForm = userValidatorForm;
+    }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {

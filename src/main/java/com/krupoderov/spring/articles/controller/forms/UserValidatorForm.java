@@ -2,7 +2,6 @@ package com.krupoderov.spring.articles.controller.forms;
 
 import com.krupoderov.spring.articles.model.User;
 import com.krupoderov.spring.articles.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -12,8 +11,11 @@ import java.util.Objects;
 @Component
 public class UserValidatorForm implements Validator {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserValidatorForm(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public boolean supports(Class<?> aClass) {

@@ -5,7 +5,6 @@ import com.krupoderov.spring.articles.repository.SectionRepository;
 import com.krupoderov.spring.articles.repository.TopicRepository;
 import com.krupoderov.spring.articles.response.ResourceNotFoundException;
 import com.krupoderov.spring.articles.utils.Constants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -19,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/section")
 public class SectionController {
 
-    @Autowired
-    private SectionRepository sectionRepository;
+    private final SectionRepository sectionRepository;
+    private final TopicRepository topicRepository;
 
-    @Autowired
-    private TopicRepository topicRepository;
+    public SectionController(SectionRepository sectionRepository, TopicRepository topicRepository) {
+        this.sectionRepository = sectionRepository;
+        this.topicRepository = topicRepository;
+    }
 
     @GetMapping("/{id}")
     public String view(@PathVariable Long id,

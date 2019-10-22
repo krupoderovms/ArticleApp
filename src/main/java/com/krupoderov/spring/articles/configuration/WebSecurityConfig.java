@@ -1,7 +1,6 @@
 package com.krupoderov.spring.articles.configuration;
 
 import com.krupoderov.spring.articles.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,11 +21,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public WebSecurityConfig(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity config) throws Exception {
         config
                 .authorizeRequests()
-                    .antMatchers("/", "/registration", "/articles").permitAll()
+                .antMatchers("/", "/registration", "/topics").permitAll()
                     .antMatchers("/static/**").permitAll()
                     .anyRequest().authenticated()
                 .and()

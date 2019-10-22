@@ -4,7 +4,6 @@ import com.krupoderov.spring.articles.model.Role;
 import com.krupoderov.spring.articles.model.User;
 import com.krupoderov.spring.articles.repository.RoleRepository;
 import com.krupoderov.spring.articles.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,14 +29,15 @@ public class UserService implements UserDetailsService {
 
     private static final long ID_ROLE_FOR_NEW_USER = 1L;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     /**
      * Метод для поиска пользователя по имени

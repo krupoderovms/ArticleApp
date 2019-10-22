@@ -1,7 +1,6 @@
 package com.krupoderov.spring.articles.controller;
 
 import com.krupoderov.spring.articles.repository.SectionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class MainController {
 
-    @Autowired
-    SectionRepository sectionRepository;
+    private final SectionRepository sectionRepository;
+
+    public MainController(SectionRepository sectionRepository) {
+        this.sectionRepository = sectionRepository;
+    }
 
     @GetMapping
     public String mainPage(Model model) {
