@@ -4,14 +4,14 @@
 <body>
 <div th:fragment="content">
 <br/>
-<!-- Main page. Display of articles -->
+    <!-- Main page. Display of topics -->
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-8 text-left">
-                <div th:each="article : ${articles}">
-                    <h3 th:text="${article.title}"/>
-                    <p th:text="${article.content}"/>
-                    <a th:href="@{/articles/editor/delete/} + ${article.id}">
+            <div th:each="topic : ${topics}">
+                <h3 th:text="${topic.title}"/>
+                <p th:text="${topic.content}"/>
+                <a th:href="@{/topics/editor/delete/} + ${topic.id}">
                         <img border="0" src="https://img.icons8.com/color/48/000000/trash.png" width="30" height="30"/>
                     </a>
                     <hr/>
