@@ -1,9 +1,9 @@
 # Spring Boot App: Articles
-A simple spring boot application that allows you to create and post for public viewing of the article.
+A simple spring boot application that allows you to create and post for public viewing of the topic.
 
 # Heroku link
 (temporarily not working)
-  https://articles-spring-boot.herokuapp.com/
+  https://topics-spring-boot.herokuapp.com/
   
 # Test user
    username: user
@@ -20,27 +20,27 @@ A simple spring boot application that allows you to create and post for public v
 Main page
 ------------------------
 
-![](https://github.com/KrupoderovMikhail/articles/blob/master/1.png)
+![](https://github.com/KrupoderovMikhail/topics/blob/master/1.png)
 
 Article page
 ------------------------
 
-![](https://github.com/KrupoderovMikhail/articles/blob/master/2.png)
+![](https://github.com/KrupoderovMikhail/topics/blob/master/2.png)
 
-Creating an article
+Creating an topic
 ------------------------
 
-![](https://github.com/KrupoderovMikhail/articles/blob/master/3.png)
+![](https://github.com/KrupoderovMikhail/topics/blob/master/3.png)
 
 Login page
 ------------------------
 
-![](https://github.com/KrupoderovMikhail/articles/blob/master/4.png)
+![](https://github.com/KrupoderovMikhail/topics/blob/master/4.png)
 
 Registration page
 ------------------------
 
-![](https://github.com/KrupoderovMikhail/articles/blob/master/5.png)
+![](https://github.com/KrupoderovMikhail/topics/blob/master/5.png)
    
    
    
