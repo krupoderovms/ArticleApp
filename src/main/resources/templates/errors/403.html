@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="layouts/default :: page">
+<body>
+<div th:fragment="content">
+    <div class="page-header">
+        <h1 th:text="#{errors.heading}">Error</h1>
+    </div>
+    <div class="jumbotron">
+        <h2>You are not authorized</h2>
+        <p class="lead">There are nothing to show for you</p>
+        <a th:href="@{/}" href="#" th:text="#{btn.goToIndexPage}" class="btn btn-lg btn-primary">goToIndexPage</a>
+        <a th:href="@{/login}" href="#" th:text="#{header.signIn}" class="btn btn-lg btn-outline-secondary">goToIndexPage</a>
+    </div>
+</div>
+</body>
+</html>
